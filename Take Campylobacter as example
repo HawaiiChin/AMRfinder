@@ -1,0 +1,16 @@
+conda install -y -c bioconda ncbi-amrfinderplus
+*check installation
+amrfinder -u
+*download 
+curl -O https://raw.githubusercontent.com/ncbi/amr/master/test_dna.fa \
+ -O https://raw.githubusercontent.com/ncbi/amr/master/test_prot.fa \
+      -O https://raw.githubusercontent.com/ncbi/amr/master/test_prot.gff \
+      -O https://raw.githubusercontent.com/ncbi/amr/master/test_both.expected \
+      -O https://raw.githubusercontent.com/ncbi/amr/master/test_dna.expected \
+      -O https://raw.githubusercontent.com/ncbi/amr/master/test_prot.expected 
+*protein
+amrfinder --plus -p test_prot.fa -g test_prot.gff -O campylobacter
+*DNA
+amrfinder --plus -n test_dna.fa -O campylobacter
+*both
+amrfinder --plus -n test_dna.fa -p test_prot.fa -g test_prot.gff -O camplylobacter
